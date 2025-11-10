@@ -8,7 +8,7 @@ Para ejecutar de forma local los archivos de este reto se necesita abrir la term
 
 Posteriormente a esto y cuando estemos dentro de nuestro entorno vamos a ejecutar 3 comandos:
 
-##`pip install -r requirements.txt`: Donde vamos a realizar la instalción de lo necesario para que nuestros códigos corran de la mejor manera.
+`pip install -r requirements.txt`: Donde vamos a realizar la instalción de lo necesario para que nuestros códigos corran de la mejor manera.
 
 `python reto1_demo.py --samples 6`: Donde vamos a ejecutar el reto 1 que consiste en crear un sistema para la detección automática de defectos en productos mediante visión computacional y para el cual en una de nuestras pruebas recibimos como resultado la respuesta: 
 ```
