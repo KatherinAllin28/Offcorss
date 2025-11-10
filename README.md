@@ -8,7 +8,7 @@ Para ejecutar de forma local los archivos de este reto se necesita abrir la term
 
 Posteriormente a esto y cuando estemos dentro de nuestro entorno vamos a ejecutar 3 comandos:
 
-`pip install -r requirements.txt`: Donde vamos a realizar la instalción de lo necesario para que nuestros códigos corran de la mejor manera.
+##`pip install -r requirements.txt`: Donde vamos a realizar la instalción de lo necesario para que nuestros códigos corran de la mejor manera.
 
 `python reto1_demo.py --samples 6`: Donde vamos a ejecutar el reto 1 que consiste en crear un sistema para la detección automática de defectos en productos mediante visión computacional y para el cual en una de nuestras pruebas recibimos como resultado la respuesta: 
 ```
@@ -20,7 +20,7 @@ Muestra 4: DEFECTO
 Muestra 5: OK
 Muestra 6: DEFECTO
 ```
-respuesta en la cual cada “Muestra” es una imagen simulada de un producto ya que no tenemos como mostrar los productos reales para este reto, el modelo de visión computacional se encarga de analizar diversos aspectos de la imagen y según lo "observado"clasifica la imagen como:
+respuesta en la cual cada “muestra” es una imagen simulada de un producto ya que no tenemos como mostrar los productos reales para este reto, el modelo de visión computacional se encarga de analizar diversos aspectos de la imagen y según lo "observado"clasifica la imagen como:
 “OK” → producto sin defectos.
 “DEFECTO” → detecta una irregularidad que puede ser mancha, costura anómala, color mal aplicado, etc.
 Por lo cual este es un reto que ustedes pueden implementar en líneas de producción o control de calidad para que una cámara identifique automáticamente prendas defectuosas antes de empaquetarlas.
