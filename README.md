@@ -41,6 +41,7 @@ Por lo cual este es un reto que ustedes pueden implementar en líneas de producc
 
 ```
 donde podemos traducir o interpretar que:
+
 "intent": "abastecimiento" → el sistema entendió que el mensaje habla de reponer inventario.
 
 "action": "crear_oc" → decidió que debe crear una orden de compra.
