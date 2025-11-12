@@ -26,9 +26,12 @@ Generando 20 OK y 20 DEFECTO…
 [0024] real=DEFECTO  pred=DEFECTO  (prob_def=0.5073)
 ...
 ```
-respuesta en la cual cada resultado es una imagen simulada, el modelo de visión computacional se encarga de analizar diversos aspectos de la imagen y según lo "observado"clasifica la imagen como:
+Respuesta en la cual cada resultado es una imagen simulada, el modelo de visión computacional se encarga de analizar diversos aspectos de la imagen y según lo "observado"clasifica la imagen como:
+
 “OK” → producto sin defectos.
+
 “DEFECTO” → detecta una irregularidad.
+
 Para entender los resultados que nos otorga nuestro método es importante tener en cuenta que el modelo que está dentro del archivo llamado `reto1_model.pkl`se entrenó con imágenes sintéticas que son generadas y guardadas en la carpeta `imagenes` y en las subcarpetas `ok` y `defectos`, donde después de ser procesadas decide si esa imagen sin importar de que subcarpeta provenga realmente si tiene defecto o no y las agrega en una nueva carpeta llamada `imagenes_pred`, este modelo contienen texturas simples, ya que en fotos reales hay fondo, iluminación, arrugas y el modelo debido a que es algo básico (con potencial a ser mucho más grande) si recibe una foto real asume falsos positivos y arroja "defecto", ya que el modelo no "ve" colores ni estampados y las imagenes generadas son en escala de grises.
 
 Por lo cual este es un reto que ustedes pueden implementar en líneas de producción o control de calidad para que una cámara identifique automáticamente prendas defectuosas antes de empacarlas, que al tener cámara y un mejor desarrolle tiene potencial para ser completamente funcional .
