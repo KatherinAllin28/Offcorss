@@ -42,33 +42,16 @@ Para entender los resultados que nos otorga nuestro método es importante tener 
 
 Por lo cual este es un reto que ustedes pueden implementar en líneas de producción o control de calidad para que una cámara identifique automáticamente prendas defectuosas antes de empacarlas, que al tener cámara y un mejor desarrolle tiene potencial para ser completamente funcional .
 
+### Nota
+Por defecto al ejecutar este reto hace la prueba con 40 imagenes, si queremos una simulación con un número mayor o menor debemos ejecutar `.\.venv\Scripts\python.exe .\reto1_demo.py --samples 200` donde el 200 se debe reemplazar con el número que deseamos
 ## Reto 4
 
-`python reto4_demo.py "El inventario del SKU 1234 está bajo. Generar compra de 150 unidades."`: Este modelo es tipo un chatbot que entiende mensajes en clave administrativa o logística, al ingresar este comando en la prueba recibimos como resultado 
+`python reto4_demo.py --comando "Registrar pedido del cliente 887 por 30 unidades del producto 1123."`: Este modelo es tipo un chatbot que entiende mensajes en clave administrativa o logística, al ingresar este comando en la prueba recibimos como resultado 
 ```
-{
-  "intent": "abastecimiento",
-  "actions": [
-    {
-      "action": "crear_oc",
-      "sku": 1234,
-      "cantidad": 150,
-      "proveedor": "ACME"
-    }
-  ]
-}
+Comando recibido: Registrar pedido del cliente 887 por 30 unidades del producto 1123.
 
+Resultado: Pedido registrado: Cliente 887, 30 unidades del producto 1123.
+Área responsable: Comercial | Tipo de acción: ventas
+Ejecutado el 12/11/2025 00:36:09
 ```
-donde podemos traducir o interpretar que:
-
-"intent": "abastecimiento" → el sistema entendió que el mensaje habla de reponer inventario.
-
-"action": "crear_oc" → decidió que debe crear una orden de compra.
-
-"sku": 1234 → identificó el código del producto.
-
-"cantidad": 150" → interpretó cuántas unidades reponer.
-
-"proveedor": "ACME" → ejemplo de proveedor que el sistema asociaría automáticamente.
-
-En la práctica, esto serviría para que un empleado escriba: “El inventario del SKU 1234 está bajo, genera compra de 150 unidades” y el agente entienda la intención, cree la orden de compra y la ingrese sin intervención humana, lo cual reduce el tiempo de trabajo y la efectividad en este ya que así como recibe este comando puede recibir otros como "Cliente 9987 solicita copia de la factura 456-2024 y estado de envío.", "Registrar pedido del cliente 887 por 30 unidades del producto 1123.", "Cliente 221 reporta prenda defectuosa en pedido 441." y "Generar reporte semanal de devoluciones y ventas online.", entre otros.
+En la práctica, esto serviría para que un empleado escriba: “Registrar pedido del cliente 887 por 30 unidades del producto 1123” y el agente entienda la intención, cree la orden de compra y la ingrese sin intervención humana, lo cual reduce el tiempo de trabajo y la efectividad en este ya que así como recibe este comando puede recibir otros como "El inventario del SKU 1234 está bajo. Generar compra de 150 unidades."y "Cliente 9987 solicita copia de la factura 456-2024 y estado de envío.", entre otros.
