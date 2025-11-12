@@ -1,26 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Reto 4 - Agente inteligente con clasificación por dependencias
-Autor: Katherin Allin Murillo
-"""
-
 import argparse
 import re
 import datetime
 import warnings
 warnings.filterwarnings("ignore")
 
-# ---------------------------------------------------------------------
-# Función base (mantiene la lógica del reto original)
-# ---------------------------------------------------------------------
 def ejecutar_modelo_original():
     print("Ejecutando lógica base del Reto 4...")
     pass
 
 
-# ---------------------------------------------------------------------
-# Clasificación e interpretación de comandos
-# ---------------------------------------------------------------------
 def interpretar_comando(texto):
     texto = texto.lower()
 
@@ -62,16 +50,12 @@ def interpretar_comando(texto):
         }
 
 
-# ---------------------------------------------------------------------
-# Procesamiento del comando con asignación de dependencia
-# ---------------------------------------------------------------------
 def procesar_comando(texto):
     info = interpretar_comando(texto)
     tipo = info["accion"]
     area = info["area"]
     intencion = info["intencion"]
 
-    # --- Lógica de ejecución según tipo de acción ---
     if tipo == "generar_orden_compra":
         sku = re.search(r"sku\s*(\d+)", texto)
         cantidad = re.search(r"(\d+)\s*unidades", texto)
@@ -118,9 +102,6 @@ def procesar_comando(texto):
     return respuesta, dependencia
 
 
-# ---------------------------------------------------------------------
-# Función principal
-# ---------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="Reto 4 - Agente inteligente con áreas responsables")
     parser.add_argument("--comando", type=str, help="Texto del comando natural a procesar")
