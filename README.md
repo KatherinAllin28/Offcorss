@@ -8,31 +8,37 @@ Para ejecutar de forma local los archivos de este reto se necesita abrir la term
 
 `.\.venv\Scripts\activate` o `& .\.venv\Scripts\Activate.ps1`
 
-Posteriormente a esto y cuando estemos dentro de nuestro entorno vamos a ejecutar 3 comandos:
+Posteriormente a esto y cuando estemos dentro de nuestro entorno vamos a ejecutar los siguientes comandos:
 
-`pip install -r requirements.txt`: Donde vamos a realizar la instalción de lo necesario para que nuestros códigos corran de la mejor manera.
+`pip install -r requirements.txt`: Donde vamos a realizar la instalación de lo necesario para que nuestros códigos corran de la mejor manera.
 
-`.\.venv\Scripts\python.exe .\reto1_export_synthetics.py --n 40 --out_dir ".\imagenes" --pred_dir ".\imagenes_pred"` : Donde vamos a ejecutar el reto 1 que consiste en crear un sistema para la detección automática de defectos en productos mediante visión computacional y para el cual en una de nuestras pruebas recibimos como resultado la respuesta: 
+`.\.venv\Scripts\python.exe .\reto1_demo.py`: Donde vamos a ejecutar el reto 1 que consiste en crear un sistema para la detección automática de defectos en productos mediante visión computacional y para el cual en una de nuestras pruebas recibimos como resultado la respuesta: 
 ```
-Generando 20 OK y 20 DEFECTO…
-[0001] real=OK  pred=DEFECTO  (prob_def=0.5069)
-[0002] real=OK  pred=DEFECTO  (prob_def=0.5065)
-[0003] real=OK  pred=DEFECTO  (prob_def=0.5066)
-[0004] real=OK  pred=DEFECTO  (prob_def=0.5071)
+Cargando modelo: reto1_model.pkl
+Generando 40 muestras sintéticas...
+[001] real=DEFECTO
+[002] real=DEFECTO
+[003] real=DEFECTO
+[004] real=DEFECTO
+[005] real=OK
+[006] real=OK
+[007] real=DEFECTO
+[008] real=DEFECTO
+[009] real=OK
+[010] real=OK
 ...
-[0021] real=DEFECTO  pred=DEFECTO  (prob_def=0.5058)
-[0022] real=DEFECTO  pred=DEFECTO  (prob_def=0.5068)
-[0023] real=DEFECTO  pred=DEFECTO  (prob_def=0.5074)
-[0024] real=DEFECTO  pred=DEFECTO  (prob_def=0.5073)
-...
+
+Total muestras: 40
+Imágenes guardadas en: C:XXXX\imagenes_generadas
+CSV con resultados: C:XXXX\resultados_reto1.csv
 ```
-Respuesta en la cual cada resultado es una imagen simulada, el modelo de visión computacional se encarga de analizar diversos aspectos de la imagen y según lo "observado"clasifica la imagen como:
+Respuesta en la cual cada resultado es una imagen que fue creada por el sistema, el modelo de visión computacional se encarga de analizar la imagen y según lo "observado"clasifica la imagen como:
 
 “OK” → producto sin defectos.
 
 “DEFECTO” → detecta una irregularidad.
 
-Para entender los resultados que nos otorga nuestro método es importante tener en cuenta que el modelo que está dentro del archivo llamado `reto1_model.pkl`se entrenó con imágenes sintéticas que son generadas y guardadas en la carpeta `imagenes` y en las subcarpetas `ok` y `defectos`, donde después de ser procesadas decide si esa imagen sin importar de que subcarpeta provenga realmente si tiene defecto o no y las agrega en una nueva carpeta llamada `imagenes_pred`, este modelo contienen texturas simples, ya que en fotos reales hay fondo, iluminación, arrugas y el modelo debido a que es algo básico (con potencial a ser mucho más grande) si recibe una foto real asume falsos positivos y arroja "defecto", ya que el modelo no "ve" colores ni estampados y las imagenes generadas son en escala de grises.
+Para entender los resultados que nos otorga nuestro método es importante tener en cuenta que el modelo que está dentro del archivo llamado `reto1_model.pkl`se entrenó con imágenes sintéticas que son generadas y guardadas en la carpeta `imagenes_generadas`, donde después de ser procesadas decide si esa imagen realmente si tiene defecto o no, este modelo contienen texturas simples, ya que en fotos reales hay fondo, iluminación, arrugas, siluetas o demás y el modelo debido a que es algo básico (con potencial a ser mucho más grande) si recibe una foto real de una prenda asumirá falsos positivos porque no está entrenado con eso y arroja "defecto", ya que el modelo no "ve" colores ni estampados y las imagenes generadas son en escala de grises, donde un solo tono de gris representa una prenda perfecta y alguna mancha de otro tono gris en la imagen representa un imperfecto en la prenda.
 
 Por lo cual este es un reto que ustedes pueden implementar en líneas de producción o control de calidad para que una cámara identifique automáticamente prendas defectuosas antes de empacarlas, que al tener cámara y un mejor desarrolle tiene potencial para ser completamente funcional .
 
