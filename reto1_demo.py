@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numpy as np
 import argparse
 import pickle
@@ -11,14 +10,8 @@ warnings.filterwarnings("ignore")
 
 
 def generar_imagen_sintetica(tamaño=(128, 128), tipo="OK"):
-    """
-    Genera una imagen sintética simple:
-    - OK: textura uniforme
-    - DEFECTO: textura con 'mancha' o ruido local
-    """
     img = np.random.normal(128, 10, tamaño).astype(np.uint8)
     if tipo == "DEFECTO":
-        # Crear defecto tipo mancha circular
         x, y = np.random.randint(30, 98), np.random.randint(30, 98)
         radio = np.random.randint(5, 15)
         yy, xx = np.ogrid[:tamaño[0], :tamaño[1]]
@@ -28,7 +21,6 @@ def generar_imagen_sintetica(tamaño=(128, 128), tipo="OK"):
 
 
 def extraer_caracteristicas(img):
-    """Extrae 4 características simples (media, std, gradiente medio y std)."""
     img = img.astype(np.float32) / 255.0
     mean = img.mean()
     std = img.std()
@@ -48,8 +40,7 @@ def main():
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
-
-    # Cargar modelo (aunque no lo usemos para mostrar predicción, se mantiene por compatibilidad)
+    
     with open(args.model, "rb") as f:
         clf = pickle.load(f)
     print(f"Cargando modelo: {args.model}\nGenerando {args.samples} muestras sintéticas...")
@@ -59,8 +50,6 @@ def main():
     for i in range(args.samples):
         tipo_real = np.random.choice(["OK", "DEFECTO"])
         img = generar_imagen_sintetica(tipo=tipo_real)
-
-        # Guardar imagen (solo etiqueta real)
         filename = f"muestra_{i+1:03d}_{tipo_real}.png"
         path = os.path.join(args.out_dir, filename)
         Image.fromarray(img).save(path)
@@ -76,7 +65,6 @@ def main():
         elif i == 10:
             print("...")
 
-    # Guardar CSV
     df = pd.DataFrame(resultados)
     df.to_csv(args.csv_out, index=False, encoding="utf-8-sig")
 
@@ -87,4 +75,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
